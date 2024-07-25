@@ -2,15 +2,15 @@ import numpy as np
 from sklearn.linear_model import Perceptron
 
 if __name__ == "__main__":
-    number = 100
+    number = 10000
     # generate random size in centimeters for women
-    women_sizes = np.random.normal(150, 10, number)
+    women_sizes = np.random.normal(130, 10, number)
     # generate random weight in kilograms for women
-    women_weights = np.random.normal(50, 10, number)
+    women_weights = np.random.normal(40, 10, number)
     # generate random size in centimeters for men
-    men_sizes = np.random.normal(180, 10, number)
+    men_sizes = np.random.normal(190, 10, number)
     # generate random weight in kilograms for men
-    men_weights = np.random.normal(80, 10, number)
+    men_weights = np.random.normal(90, 10, number)
 
 
     # create a shuffle dataset with the sizes and weight of both women and men
@@ -37,5 +37,10 @@ if __name__ == "__main__":
     # test the model
     print("Testing...")
     print(model.score([x[:2] for x in test_set], [x[2] for x in test_set]))
+
+    # print weights and bias
+    print(model.coef_)
+    print(model.intercept_)
+    
 
 
