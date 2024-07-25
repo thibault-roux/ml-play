@@ -1,5 +1,7 @@
 import numpy as np
 from sklearn.linear_model import Perceptron
+import matplotlib.pyplot as plt
+from sklearn.inspection import DecisionBoundaryDisplay
 
 if __name__ == "__main__":
     number = 10000
@@ -39,8 +41,15 @@ if __name__ == "__main__":
     print(model.score([x[:2] for x in test_set], [x[2] for x in test_set]))
 
     # print weights and bias
-    print(model.coef_)
-    print(model.intercept_)
-    
+    print(model.coef_) # weights
+    print(model.intercept_) # bias
+
+
+    # plot the decision boundary
+    display = DecisionBoundaryDisplay.from_estimator(model, X=np.array([x[:2] for x in dataset]), xlabel="Size", ylabel="Weight")
+    plt.plot()
+    plt.savefig("decision_boundary.png")
+
+
 
 
