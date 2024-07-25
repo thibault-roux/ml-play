@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from sklearn.inspection import DecisionBoundaryDisplay
 
 if __name__ == "__main__":
-    number = 10000
+    number = 1000000
     # generate random size in centimeters for women
     women_sizes = np.random.normal(160, 10, number)
     # generate random weight in kilograms for women
@@ -35,7 +35,7 @@ if __name__ == "__main__":
     model = Perceptron()
     # train the model
     print("Training...")
-    model.fit([x[:2] for x in train_set], [x[2] for x in train_set], epochs=5)
+    model.fit([x[:2] for x in train_set], [x[2] for x in train_set])
     # test the model
     print("Testing...")
     print(model.score([x[:2] for x in test_set], [x[2] for x in test_set]))
