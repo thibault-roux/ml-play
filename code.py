@@ -1,5 +1,5 @@
 import numpy as np
-import sklearn
+from sklearn.linear_model import Perceptron
 
 if __name__ == "__main__":
     number = 100
@@ -29,13 +29,13 @@ if __name__ == "__main__":
     train_set = dataset[:number]
     test_set = dataset[number:]
 
-    print(train_set)
-
     # create the model which is a perceptron with 2 inputs and 1 output
-    model = sklearn.linear_model.Perceptron()
+    model = Perceptron()
     # train the model
+    print("Training...")
     model.fit([x[:2] for x in train_set], [x[2] for x in train_set])
     # test the model
+    print("Testing...")
     print(model.score([x[:2] for x in test_set], [x[2] for x in test_set]))
-    
+
 
