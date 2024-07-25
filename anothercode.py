@@ -1,7 +1,5 @@
 import numpy as np
 from sklearn.linear_model import Perceptron
-import matplotlib.pyplot as plt
-from sklearn.inspection import DecisionBoundaryDisplay
 
 if __name__ == "__main__":
     number = 1000000
@@ -34,29 +32,20 @@ if __name__ == "__main__":
     print("Testing...")
     print(model.score([x[:1] for x in test_set], [x[1] for x in test_set]))
 
-    # print weights and bias
-    print(model.coef_) # weights
-    print(model.intercept_) # bias
+    # # print weights and bias
+    # print(model.coef_) # weights
+    # print(model.intercept_) # bias
 
-    example_female = np.array([160]).reshape(1, -1)
-    example_male = np.array([180]).reshape(1, -1)
-
-    score_female = model.decision_function(example_female)
-    score_male = model.decision_function(example_male)
-    print("female:", example_female, model.predict(example_female), score_female)
-    print("male:", example_male, model.predict(example_male), score_male)
-
-
-    # plot the decision boundary
-    display = DecisionBoundaryDisplay.from_estimator(model, X=np.array([x[:1] for x in dataset]), xlabel="Size")
 
     # plot a small subset of the dataset
-    dataset = dataset[:100]
-    plt.scatter([x[0] for x in dataset if x[1] == 0], [0 for x in dataset if x[1] == 0], color="red", label="women")
-    plt.scatter([x[0] for x in dataset if x[1] == 1], [0 for x in dataset if x[1] == 1], color="blue", label="men")
+    dataset = dataset[:10]
+    # sort the dataset by size
+    dataset = sorted(dataset, key=lambda x: x[0])
+    # print each element
+    for x in dataset:
+        # print the size, the prediction, the score and the target
+        print(x[0], model.predict(np.array(x[0]).reshape(1, -1)), model.decision_function(np.array(x[0]).reshape(1, -1)), x[1])
 
-    plt.plot()
-    plt.savefig("other_decision_boundary.png")
 
 
 
