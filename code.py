@@ -23,12 +23,19 @@ if __name__ == "__main__":
         size = men_sizes[i]
         weight = men_weights[i]
         dataset.append((size, weight, 1))
-    print(dataset)
 
     # shuffle the dataset and split in training in testing set
     np.random.shuffle(dataset)
     train_set = dataset[:number]
     test_set = dataset[number:]
 
-    # create the model
+    print(train_set)
+
+    # create the model which is a perceptron with 2 inputs and 1 output
+    model = sklearn.linear_model.Perceptron()
+    # train the model
+    model.fit([x[:2] for x in train_set], [x[2] for x in train_set])
+    # test the model
+    print(model.score([x[:2] for x in test_set], [x[2] for x in test_set]))
+    
 
