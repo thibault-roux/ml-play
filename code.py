@@ -13,12 +13,16 @@ if __name__ == "__main__":
     men_weights = np.random.normal(80, 10, number)
 
 
-    # create a shuffle dataset with the sizes of both women and men
+    # create a shuffle dataset with the sizes and weight of both women and men
     dataset = []
-    for size in women_sizes:
-        dataset.append((size, 0))
-    for size in men_sizes:
-        dataset.append((size, 1))
+    for i in range(len(women_sizes)):
+        size = women_sizes[i]
+        weight = women_weights[i]
+        dataset.append((size, weight, 0))
+    for i in range(len(men_sizes)):
+        size = men_sizes[i]
+        weight = men_weights[i]
+        dataset.append((size, weight, 1))
     print(dataset)
 
     # shuffle the dataset and split in training in testing set
